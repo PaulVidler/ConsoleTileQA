@@ -27,12 +27,10 @@ namespace TileQA
                 Console.WriteLine("Metres squared: " + newTile.TileSideLength);
                 Console.WriteLine(newTile);
                 Console.WriteLine(project.ProjectComplete);
-
                 newTile.ThisTileState = TileState.inProgress;
                 Console.WriteLine("New state of tile: " + newTile.ThisTileState);
                 newTile.SetTileColour();
                 Console.WriteLine("New tile colour: " + newTile.TileColour);
-
                 project.ProjectTiles.Add(newTile);
 
             }
