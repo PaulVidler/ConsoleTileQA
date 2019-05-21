@@ -9,6 +9,7 @@ namespace TileQA
     class QAProject
     {
         public Collection<Tile> ProjectTiles = new Collection<Tile>();
+
         public bool ProjectComplete { get; set; } = false;
         private int _tileCount = 0;
         public int TileCount

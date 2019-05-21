@@ -12,6 +12,7 @@ namespace TileQA
     class Tile
     {
         // Properties:
+
         public TileState ThisTileState { get; set; }
         public Colour TileColour { get; set; }
         public int TileSideLength { get; set; }

@@ -20,6 +20,7 @@ namespace TileQA
                 newTile.TileSideLength = 500;
 
                 Console.WriteLine("Line: " + line);
+
                 Console.WriteLine("Tile name : " + newTile.TileName);
                 Console.WriteLine("Tile colour: " + newTile.TileColour);
                 Console.WriteLine("State of tile: " + newTile.ThisTileState);
@@ -31,7 +32,6 @@ namespace TileQA
                 Console.WriteLine("New state of tile: " + newTile.ThisTileState);
                 newTile.SetTileColour();
                 Console.WriteLine("New tile colour: " + newTile.TileColour);
-
 
                 project.ProjectTiles.Add(newTile);
 
