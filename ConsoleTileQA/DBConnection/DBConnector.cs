@@ -57,8 +57,13 @@ namespace ConsoleTileQA.DBConnection
                 newTile.TileSideLength = 500;
                 project.ProjectName = "TestProject";
 
-                sqlite_cmd.CommandText = "INSERT INTO tiles (tileColour, projectName, thisTileState, tileSideLength, tileName)" +
-                    $"VALUES( null, '{newTile.TileColour}', '{project.ProjectName}', '{newTile.ThisTileState}', '{newTile.TileSideLength}', '{newTile.TileName}','null')";
+                sqlite_cmd.CommandText = "INSERT INTO tiles (ID, tileColour, projectName, thisTileState, tileSideLength, tileName, checkedBy)" +
+                    $"VALUES( null, '{newTile.TileColour}', '{project.ProjectName}', '{newTile.ThisTileState}', '{newTile.TileSideLength}', '{newTile.TileName}', null)";
+
+                // test query - working
+                //sqlite_cmd.CommandText = "INSERT INTO tiles (ID, tileColour, projectName, thisTileState, tileSideLength, tileName, checkedBy)" +
+                //    "VALUES( null, 'tileColour', 'projectName','theTILESTATE', 'thisTileLENGTH', 'tileNAME', 'CheckedBY')";
+
 
                 sqlite_cmd.ExecuteNonQuery();
 
