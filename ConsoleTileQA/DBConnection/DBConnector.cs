@@ -32,15 +32,18 @@ namespace ConsoleTileQA.DBConnection
             return sqlite_conn;
         }
 
+        // returns list of all tiles in project according to "jobName" passed into method
         public List<dynamic> ReadAll(string jobName)
         {
             using (SQLiteConnection sqlite_conn = new SQLiteConnection(CreateConnection()))
             {
-                return sqlite_conn.Query($"Select * from tiles WHERE projectName = {jobName}").ToList();
+                return sqlite_conn.Query($"SELECT * FROM tiles WHERE projectName = {jobName}").ToList();
             }
         }
 
 
+
+        // reads text file and creates tile objects and adds to DB
         public static void InsertData(SQLiteConnection conn)
         {
             SQLiteCommand sqlite_cmd;

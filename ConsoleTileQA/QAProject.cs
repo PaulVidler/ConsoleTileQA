@@ -21,7 +21,7 @@ namespace TileQA
             }
         }
 
-        // public int TileCount { get; set; }
+        
         public string ProjectName { get; set; }
 
 

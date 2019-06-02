@@ -1,0 +1,17 @@
+
+Tile objects
+- Describes properties of tiles and provides getters and setters.
+- Plus one method to update tile color when tile State is changed.
+
+
+QA PROJECT
+- Has a collection of tile objects.
+- Method for IsComplete. to check if all tiles have been marked as complete.
+- Keeps tile count. IE: Count of list items in collection.
+- Property for project name.
+
+
+DB Connector
+- Need methods to change states of each tile in DB.
+- When state is changed, remember to call SetTileColour() to change tile colour
+- DB Exists already

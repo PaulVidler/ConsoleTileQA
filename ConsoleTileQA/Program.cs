@@ -11,38 +11,18 @@ namespace TileQA
         static void Main(string[] args)
         {
 
-            SQLiteConnection sqlite_conn;
-            sqlite_conn =  DBConnector.CreateConnection();
+            //SQLiteConnection sqlite_conn;
+            //sqlite_conn =  DBConnector.CreateConnection();
 
-            DBConnector.InsertData(sqlite_conn);
+            //List<dynamic> showDb;
 
-            //var lines = File.ReadLines(@"C:\Users\User\Desktop\tile.txt");
+            //DBConnector readList;
+            //readList = DBConnector.ReadAll("TestProject");
 
-            //QAProject project = new QAProject();
+            ConsoleTileQA.JSONParser test = new ConsoleTileQA.JSONParser();
 
-            //foreach (var line in lines)
-            //{
-            //    Tile newTile = new Tile();
-            //    newTile.TileName = line;
-            //    newTile.TileSideLength = 500;
-
-            //    Console.WriteLine("Line: " + line);
-
-            //    Console.WriteLine("Tile name : " + newTile.TileName);
-            //    Console.WriteLine("Tile colour: " + newTile.TileColour);
-            //    Console.WriteLine("State of tile: " + newTile.ThisTileState);
-            //    Console.WriteLine("Metres squared: " + newTile.TileSideLength);
-            //    Console.WriteLine(newTile);
-            //    Console.WriteLine(project.ProjectComplete);
-            //    newTile.ThisTileState = TileState.inProgress;
-            //    Console.WriteLine("New state of tile: " + newTile.ThisTileState);
-            //    newTile.SetTileColour();
-            //    Console.WriteLine("New tile colour: " + newTile.TileColour);
-            //    project.ProjectTiles.Add(newTile);
-
-            //}
-
-
+            test.stringParser();
+            
 
 
         }
