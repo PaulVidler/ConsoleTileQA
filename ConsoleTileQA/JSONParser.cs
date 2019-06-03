@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Web;
 
@@ -24,35 +25,47 @@ namespace ConsoleTileQA
                 text = streamReader.ReadToEnd();
             }
 
-            var tile = JsonConvert.DeserializeObject<jsonTile>(json);
-            Console.WriteLine(tile.name + tile.xmax + tile.xmin);
-            Console.WriteLine(tile);
+            // make new JObject from filestream text
+            JObject obj = JObject.Parse(text);
+            List<object> tiles = new List<object>();
 
-            JObject o = JObject.Parse(json);
+            // count amount of tile object in JSON
+            int count = obj["features"].Count();
 
-            List<jsonTile> list = JsonConvert.DeserializeObject<List<jsonTile>>(o["name"].ToString());
-
-            foreach (var item in list)
+            for (int i = 0; i < count; i++)
             {
-                Console.WriteLine(item);
+                Console.WriteLine(obj["features"][count]["properties"]["name"]);
             }
 
-            Console.WriteLine("Last line");
 
+            string firstDrive = (string)obj["features"][0]["properties"]["name"];
+            Console.WriteLine(firstDrive);
+
+
+        }
+
+        public int tileSize()
+        {
+            string text;
+            FileStream fileStream = new FileStream(@"C:\Users\Paul\Documents\GitHub\ConsoleTileQA\TileLayout.json", FileMode.Open, FileAccess.Read);
+            using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
+            {
+                text = streamReader.ReadToEnd();
+            }
+
+            JObject obj = JObject.Parse(text);
+
+
+            int xmax = (int)obj["features"][0]["properties"]["xmax"];
+            int xmin = (int)obj["features"][0]["properties"]["xmin"];
+
+            int size = xmax - xmin;
+
+            return size;
 
         }
 
 
     }
 
-    class jsonTile
-    {
-        [JsonProperty]
-        public string name { get; set; }
-        [JsonProperty]
-        public string xmax { get; set; }
-        [JsonProperty]
-        public string xmin { get; set; }
-
-    }
 }

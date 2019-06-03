@@ -22,6 +22,8 @@ namespace TileQA
             ConsoleTileQA.JSONParser test = new ConsoleTileQA.JSONParser();
 
             test.stringParser();
+
+            Console.WriteLine(test.tileSize());
             
 
 
