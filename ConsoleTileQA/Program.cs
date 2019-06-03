@@ -21,7 +21,12 @@ namespace TileQA
 
             ConsoleTileQA.JSONParser test = new ConsoleTileQA.JSONParser();
 
-            test.stringParser();
+            List<object> tiles = new List<object>(test.stringParser());
+
+            foreach (var item in tiles)
+            {
+                Console.WriteLine(item);
+            }
 
             Console.WriteLine(test.tileSize());
             

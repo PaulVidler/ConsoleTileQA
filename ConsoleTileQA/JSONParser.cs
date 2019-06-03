@@ -16,7 +16,7 @@ namespace ConsoleTileQA
         string json = File.ReadAllText(@"C:\Users\Paul\Documents\GitHub\ConsoleTileQA\TileLayout.json");
 
 
-        public void stringParser()
+        public List<object> stringParser()
         {
             string text;
             FileStream fileStream = new FileStream(@"C:\Users\Paul\Documents\GitHub\ConsoleTileQA\TileLayout.json", FileMode.Open, FileAccess.Read);
@@ -29,18 +29,20 @@ namespace ConsoleTileQA
             JObject obj = JObject.Parse(text);
             List<object> tiles = new List<object>();
 
+            string tileName;
+
             // count amount of tile object in JSON
             int count = obj["features"].Count();
 
             for (int i = 0; i < count; i++)
             {
-                Console.WriteLine(obj["features"][count]["properties"]["name"]);
+                tileName = (string)obj["features"][i]["properties"]["name"];
+
+                tiles.Add(tileName);
+                
             }
 
-
-            string firstDrive = (string)obj["features"][0]["properties"]["name"];
-            Console.WriteLine(firstDrive);
-
+            return tiles;
 
         }
 
