@@ -1,21 +1,61 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Web;
 
-namespace ConsoleTileQA
+namespace TileQA
 {
-    
-    class JSONParser
+
+    class TcTileLayoutParser
     {
-        //read json into text then pass to newtonsoft
-        string json = File.ReadAllText(@"C:\Users\Paul\Documents\GitHub\ConsoleTileQA\TileLayout.json");
+        /// <summary>
+        /// GetLayout
+        /// </summary>
+        /// <param name="prmFilePath">The .json file.</param>
+        /// <returns>new TcTileLayout Object</returns>
+        public static TcTileLayout GetLayout(string prmFilePath)
+        {
+            Debug.Assert(File.Exists(prmFilePath), "File Not found.");
 
+            var fileData = File.ReadAllText(prmFilePath);
+            var obj      = JsonConvert.DeserializeObject<TcTileLayout>(fileData);
 
+            if (obj != null)
+            {
+                return obj;
+            }
+
+            throw new JsonSerializationException("Could not deserialize TcFileLayout from lpFile");
+        }
+
+        #region IDisposable 
+        private bool disposedValue = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    // TODO: dispose managed state (managed objects).
+                }
+
+                // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
+                // TODO: set large fields to null.
+
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion
+
+        //string json = File.ReadAllText(@"C:\Users\Paul\Documents\GitHub\ConsoleTileQA\TileLayout.json");
+
+        //not sure the point of all of this.
+        /*
         public List<object> stringParser()
         {
             string text;
@@ -66,7 +106,7 @@ namespace ConsoleTileQA
             return size;
 
         }
-
+        */
 
     }
 

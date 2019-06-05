@@ -1,14 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
-using TileQA;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace TileQA
 {
-    class QAProject
+    class TcProject
     {
-        public Collection<Tile> ProjectTiles = new Collection<Tile>();
+        public readonly Collection<TcTile> ProjectTiles = new Collection<TcTile>();
+        public string ProjectName { get; set; }
+        public int TileCount         => ProjectTiles.Count;
+        public bool ProjectComplete  => ProjectTiles.All(i => i.ThisTileState == TileState.checkedOK);
+
+
+        /*
+        public Collection<TcTile> ProjectTiles = new Collection<TcTile>();
 
         public bool ProjectComplete { get; set; } = false;
         private int _tileCount = 0;
@@ -50,9 +54,7 @@ namespace TileQA
             {
                 ProjectComplete = false;
             }
-
         }
-
-
+        */
     }
 }

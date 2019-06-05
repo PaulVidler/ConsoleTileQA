@@ -1,8 +1,5 @@
 ﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Data.SQLite;
-using ConsoleTileQA.DBConnection;
+using TileQA.Types;
 
 namespace TileQA
 {
@@ -10,7 +7,6 @@ namespace TileQA
     {
         static void Main(string[] args)
         {
-
             //SQLiteConnection sqlite_conn;
             //sqlite_conn =  DBConnector.CreateConnection();
 
@@ -19,19 +15,36 @@ namespace TileQA
             //DBConnector readList;
             //readList = DBConnector.ReadAll("TestProject");
 
-            ConsoleTileQA.JSONParser test = new ConsoleTileQA.JSONParser();
+            //ConsoleTileQA.JSONParser test = new ConsoleTileQA.JSONParser();
 
-            List<object> tiles = new List<object>(test.stringParser());
+            //List<object> tiles = new List<object>(test.stringParser());
 
-            foreach (var item in tiles)
+            //foreach (var item in tiles)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+            //Console.WriteLine(test.tileSize());
+
+
+            using (var layout = TcTileLayoutParser.GetLayout(@"..\..\..\..\TileLayout.json"))
             {
-                Console.WriteLine(item);
+                foreach (var feature in layout.Features)
+                {
+                    if (feature.Geometry.Type == "Polygon")
+                    {
+                        var tile = new TcTile
+                        {
+                            TileName      = feature.Properties.Name,
+                            ThisTileState = TileState.notChecked,
+                            Rect          = new TcTileRect(feature.Geometry)
+                        };
+
+                        Console.WriteLine("Tile: {0} TileSize: {1}", tile, tile.TileSideLength);
+                    }
+
+                }
             }
-
-            Console.WriteLine(test.tileSize());
-            
-
-
         }
     }
 

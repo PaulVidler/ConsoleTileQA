@@ -1,22 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using TileQA.Types;
 
 namespace TileQA
 {
-
     enum TileState { notChecked, checkedOK, inProgress, resupply }
 
     enum Colour { white, green, orange, red };
 
-    class Tile
-    {
-        // Properties:
-
+    class TcTile
+    {     
         public TileState ThisTileState { get; set; }
         public Colour TileColour { get; set; }
-        public int TileSideLength { get; set; }
         public string TileName { get; set; }
+        public TcTileRect Rect { get; set; }
+
+        public int TileSideLength => (int)(Rect?.TileSize.Length() ?? 0);
 
         public void SetTileColour()
         {
@@ -37,7 +34,11 @@ namespace TileQA
                 default:
                     break;
             }
+        }
 
+        public override string ToString()
+        {
+            return string.Format("[{0}-{1}]", TileName, ThisTileState);
         }
     }
 }

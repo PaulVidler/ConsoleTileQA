@@ -51,13 +51,12 @@ namespace ConsoleTileQA.DBConnection
 
             var lines = File.ReadLines(@"C:\Users\User\Desktop\tile.txt");
 
-            QAProject project = new QAProject();
+            TcProject project = new TcProject();
 
             foreach (var line in lines)
             {
-                Tile newTile = new Tile();
+                TcTile newTile = new TcTile();
                 newTile.TileName = line;
-                newTile.TileSideLength = 500;
                 project.ProjectName = "TestProject";
 
                 sqlite_cmd.CommandText = "INSERT INTO tiles (ID, tileColour, projectName, thisTileState, tileSideLength, tileName, checkedBy)" +
